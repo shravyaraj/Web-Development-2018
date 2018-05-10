@@ -11,8 +11,11 @@ import com.example.firstapp.repository.HelloRespository;
 public class HelloService {
 	@Autowired
 	HelloRespository repository;
+	
     @GetMapping("/api/hello")
 	public Iterable<Hello> findAllHellos() {
 		return repository.findAll();
+
+	
 }
 }
