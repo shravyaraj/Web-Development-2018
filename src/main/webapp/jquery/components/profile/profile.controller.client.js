@@ -1,17 +1,23 @@
 (function() {
     $(init);
 
-    var $staticEmail;
-    var $firstName;
-    var $lastName;
+    var $staticUsername;
+    var $phone;
+    var $email;
     var $updateBtn;
+    var $role;
+    var $dob;
+    var $logoutBtn;
     var userService = new UserServiceClient();
 
     function init() {
-        $staticEmail = $("#staticEmail");
-        $firstName = $("#firstName");
-        $lastName = $("#lastName");
+    	$staticUsername = $("#staticUsername");
+    	$phone = $("#phone");
+    	$email = $("#email");
+    	$role = $("#role");
+    	$dob = $("#dob");
         $updateBtn = $("#updateBtn")
+        $logoutBtn = $("#logoutBtn")
             .click(updateUser);
 
         findUserById(12);
@@ -19,8 +25,10 @@
 
     function updateUser() {
         var user = {
-            firstName: $firstName.val(),
-            lastName: $lastName.val()
+            phone: $phone.val(),
+            email: $email.val(),
+            role: $role.val(),
+            dob: $dob.val()
         };
 
         userService
@@ -30,9 +38,9 @@
 
     function success(response) {
         if(response === null) {
-            alert('unable to update')
+            alert('Oops! Unable to update!')
         } else {
-            alert('success');
+            alert('Successfully Updated!');
         }
     }
 
@@ -44,8 +52,10 @@
     
     function renderUser(user) {
         console.log(user);
-        $staticEmail.val(user.username);
-        $firstName.val(user.firstName);
-        $lastName.val(user.lasteName);
+        $staticUsername.val(user.username);
+        $email.val(user.email);
+        $role.val(user.role);
+        $phone.val(user.phone);
+        $dob.val(user.dob);
     }
 })();
