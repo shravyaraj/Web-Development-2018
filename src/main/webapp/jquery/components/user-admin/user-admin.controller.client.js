@@ -54,6 +54,12 @@
 
             clone.find('.username')
                 .html(user.username);
+            clone.find('.password')
+            .html(user.password);
+            clone.find('.firstName')
+            .html(user.firstName);
+            clone.find('.lastName')
+            .html(user.lastName);
             tbody.append(clone);
         }
     }
