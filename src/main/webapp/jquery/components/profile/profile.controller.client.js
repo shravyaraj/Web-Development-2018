@@ -9,6 +9,7 @@
     var $dob;
     var $logoutBtn;
     var userService = new UserServiceClient();
+    
 
     function init() {
     	$staticUsername = $("#staticUsername");
@@ -17,10 +18,12 @@
     	$role = $("#role");
     	$dob = $("#dob");
         $updateBtn = $("#updateBtn")
+        		     .click(updateUser);
         $logoutBtn = $("#logoutBtn")
-            .click(updateUser);
+        		     .click(logout);
+            
 
-        findUserById(12);
+        findUserById(userId);
     }
 
     function updateUser() {
@@ -32,12 +35,16 @@
         };
 
         userService
-            .updateUser(12, user)
+            .updateUser(userId, user)
             .then(success);
+    }
+    
+    function logout(){
+    	window.location.replace('http://localhost:8080/jquery/components/login/login.template.client.html');
     }
 
     function success(response) {
-        if(response === null) {
+        if(response == null) {
             alert('Oops! Unable to update!')
         } else {
             alert('Successfully Updated!');

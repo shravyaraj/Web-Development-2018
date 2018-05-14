@@ -46,6 +46,11 @@ public class UserService {
 		if(data.isPresent()) {
 			User user = data.get();
 			user.setFirstName(newUser.getFirstName());
+			user.setLastName(newUser.getLastName());
+			user.setemail(newUser.getemail());
+			user.setphone(newUser.getphone());
+			user.setrole(newUser.getrole());
+			user.setdateOfBirth(newUser.getdateOfBirth());
 			repository.save(user);
 			return user;
 		}
