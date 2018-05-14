@@ -12,9 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.firstapp.repository.UserRepository;
-
 import com.example.firstapp.models.User;
+import com.example.firstapp.repositories.UserRepository;
 
 @RestController
 public class UserService {
