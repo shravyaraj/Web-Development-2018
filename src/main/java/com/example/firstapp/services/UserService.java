@@ -47,10 +47,6 @@ public class UserService {
 			User user = data.get();
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
-			user.setemail(newUser.getemail());
-			user.setphone(newUser.getphone());
-			user.setrole(newUser.getrole());
-			user.setdateOfBirth(newUser.getdateOfBirth());
 			repository.save(user);
 			return user;
 		}
