@@ -6,13 +6,15 @@
     var tbody;
     var template;
     var userService = new UserServiceClient()
+    var username;
+    var password;
     
     function main() {
-    	 var username = $('#usernameFld').val();
-         var password = $('#inputPasswordFld').val();
+    	 username = $('#usernameFld').val();
+         password = $('#inputPasswordFld').val();
          tbody = $('tbody');
          matchPassword();
-         $('#registerBtn').click(findUserByUsername(username)); 
+         $('#registerBtn').click(findUserByUsername); 
          $('#loginBtn').click(login);
     }
     
@@ -21,8 +23,7 @@
             if ($('#inputPasswordFld').val() == $('#confirmPasswordFld').val()) {
             	$('#match').html('It is a match!');
             	$('#registerBtn').removeAttr("disabled");
-            	
-                } else {
+            	} else {
                 	$('#match').html('Password does not match!');
                     $('#registerBtn').attr("disabled","disabled");
                 }
@@ -32,8 +33,8 @@
     function findUserByUsername(username){
     	console.log('Checking username availibility...')
 		 userService
-		 			.findUserByUsername(username);
-		 			//.then(success);
+		 			.findUserByUsername(username)
+		 			.then(success);
 	}
     
     function success(response){
@@ -58,7 +59,7 @@
       }
 	 
 	 function profile(){
-    	window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + $("#usernameFld").val();
+    	window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + $('#usernameFld').val();
      }
 	 
 	 function login(){

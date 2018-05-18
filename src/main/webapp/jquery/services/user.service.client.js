@@ -78,6 +78,13 @@ function UserServiceClient() {
             .then(function(response){
                 return response.json();
             });
+            /*.then(function(response){
+                if(response.status==200) {
+                    return response.json();
+                } else {
+                    return null;
+                }
+            });*/
     }
 
     function createUser(user) {

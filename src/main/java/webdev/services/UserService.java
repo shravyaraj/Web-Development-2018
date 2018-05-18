@@ -78,7 +78,6 @@ public class UserService {
 		return null;
 	}
 	
-	
 	@GetMapping("/api/user/{userId}")
 	public User findUserById(@PathVariable("userId") int userId) {
 		Optional<User> data = repository.findById(userId);

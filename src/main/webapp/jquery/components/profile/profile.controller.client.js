@@ -21,11 +21,8 @@
         		     .click(updateUser);
         $logoutBtn = $("#logoutBtn")
         		     .click(logout);
-        //$userId=2;
         var username=$.urlParam('username');
-            
-
-        //findUserById($userId);
+      
         findUserByUsername(username);
     }
     
