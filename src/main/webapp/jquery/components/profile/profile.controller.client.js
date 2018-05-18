@@ -21,9 +21,10 @@
         		     .click(updateUser);
         $logoutBtn = $("#logoutBtn")
         		     .click(logout);
+        $userId=52;
             
 
-        findUserById(402);
+        findUserById($userId);
     }
 
     function updateUser() {
@@ -35,7 +36,7 @@
         };
 
         userService
-            .updateUser(402, user)
+            .updateUser(userId, user)
             .then(success);
     }
     
@@ -53,7 +54,7 @@
 
     function findUserById(userId) {
         userService
-            .findUserById(userId)
+            .findUserById($userId)
             .then(renderUser);
     }
     

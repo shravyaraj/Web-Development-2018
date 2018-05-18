@@ -8,29 +8,44 @@
     var userService = new UserServiceClient()
     
     function main() {
+    	 var username = $('#usernameFld').val();
+         var password = $('#inputPasswordFld').val();
+         tbody = $('tbody');
+         matchPassword();
+         $('#registerBtn').click(findUserByUsername(username)); 
+         $('#loginBtn').click(login);
+    }
+    
+    function matchPassword(){
     	$('#inputPasswordFld, #confirmPasswordFld').on('keyup', function () {
             if ($('#inputPasswordFld').val() == $('#confirmPasswordFld').val()) {
-            	$('#message').html('It is a match!');
+            	$('#match').html('It is a match!');
             	$('#registerBtn').removeAttr("disabled");
             	
                 } else {
-                	$('#message').html('Password does not match!');
+                	$('#match').html('Password does not match!');
                     $('#registerBtn').attr("disabled","disabled");
                 }
         });
-            
-        tbody = $('tbody');
-        $('#registerBtn').click(createUser)
-                         .click(profile); 
-        $('#loginBtn').click(login);
+    }
+    
+    function findUserByUsername(username){
+    	console.log('Checking username availibility...')
+		 userService
+		 			.findUserByUsername(username)
+		 			.then(success);
+	}
+    
+    function success(){
+    	if(response == null) {
+			 createUser();
+		 }
+    	else
+    		alert('Sorry! Username already taken!')
     }
     
 	function createUser() {
-        console.log('createUser');
-
-        var username = $('#usernameFld').val();
-        var password = $('#inputPasswordFld').val();
-
+        console.log('Registering user...');
         var user = {
             username: username,
             password: password
@@ -39,7 +54,9 @@
         userService
             .createUser(user);
             //.then(findUserById(userId));
+         
         alert('Registered successfully');
+        profile();
       }
 	 
 	 function profile(){
