@@ -1,4 +1,4 @@
-package com.example.firstapp;
+package webdev;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

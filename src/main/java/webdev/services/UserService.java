@@ -1,4 +1,4 @@
-package com.example.firstapp.services;
+package webdev.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.firstapp.models.User;
-import com.example.firstapp.repositories.UserRepository;
+import webdev.models.User;
+import webdev.repositories.UserRepository;
 
 @RestController
 public class UserService {

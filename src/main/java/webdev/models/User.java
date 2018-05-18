@@ -1,4 +1,4 @@
-package com.example.firstapp.models;
+package webdev.models;
 
 
 import javax.persistence.Entity;
