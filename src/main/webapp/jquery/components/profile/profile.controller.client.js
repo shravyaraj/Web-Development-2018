@@ -22,7 +22,7 @@
         $logoutBtn = $("#logoutBtn")
         		     .click(logout);
         //$userId=2;
-        var username=$.urlParam('uname');
+        var username=$.urlParam('username');
             
 
         //findUserById($userId);
@@ -33,11 +33,26 @@
         if (!url) {
          url = window.location.href;
         }
-        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
-        if (!results) { 
+        var extract = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+        if (!extract) { 
             return undefined;
         }
-        return results[1] || undefined;
+        return extract[1] || undefined;
+    }
+    
+    function findUserByUsername(username) {
+        userService
+            .findUserByUsername(username)
+            .then(renderUser);
+        }
+    
+    function renderUser(user) {
+        console.log(user);
+        $staticUsername.val(user.username);
+        $email.val(user.email);
+        $role.val(user.role);
+        $phone.val(user.phone);
+        $dob.val(user.dob);
     }
 
     function updateUser() {
@@ -49,12 +64,8 @@
         };
 
         userService
-            .updateUser($userId, user)
+            .updateUser(userId, user)
             .then(success);
-    }
-    
-    function logout(){
-    	window.location.replace('http://localhost:8080/jquery/components/login/login.template.client.html');
     }
 
     function success(response) {
@@ -64,6 +75,10 @@
             alert('Successfully Updated!');
         }
     }
+    
+    function logout(){
+    	window.location.replace('http://localhost:8080/jquery/components/login/login.template.client.html');
+    }
 
     /*function findUserById(userId) {
         userService
@@ -71,19 +86,8 @@
             .then(renderUser);
     }*/
     
-    function findUserByUsername(username) {
-    userService
-        .findUserByUsername(username)
-        .then(renderUser);
-    }
     
     
-    function renderUser(user) {
-        console.log(user);
-        $staticUsername.val(user.username);
-        $email.val(user.email);
-        $role.val(user.role);
-        $phone.val(user.phone);
-        $dob.val(user.dob);
-    }
+    
+    
 })();

@@ -11,28 +11,26 @@
     function init(){
     	$username = $("#usernameFld");
     	$password = $("#inputPasswordFld");
-    	uname = $("#usernameFld").val();
     	$loginBtn = $("#loginBtn")
     				.click(login);
     	$registerBtn = $("#registerBtn")
     				.click(register);
-    	
-    	
-    	
-    }
+    	}
     
     function login(){
     	userService
-    			.login($username.val(),$password.val());
-    	profile();
+    			.login($username.val(),$password.val())
+    	        .then(success);
+    	} 
+    
+    function success(response){
+    	if(response!=null){
+    		window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + $("#usernameFld").val();
+    	}else
+    		alert('Wrong username or password!');
     }
     
     function register(){
     	window.location.replace( 'http://localhost:8080/jquery/components/register/register.template.client.html')
-    }
-    
-    function profile(){
-    	window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + uname;
-    }
-    
+    }    
   })();

@@ -8,15 +8,23 @@ function UserServiceClient() {
     this.login = login;
     this.url = 'http://localhost:8080/api/user';
     this.login_url = 'http://localhost:8080/api/login';
+    this.profile_url = 'http://localhost:8080/api/profile'
     var self = this;
 
 
     function login(username, password) {
         return fetch(self.login_url, {
             method: 'post',
-            body: JSON.stringify({username:username, password: password}),
+            body: JSON.stringify({username:username, password:password}),
             headers: {
                 'content-type': 'application/json'
+            }
+        })
+        .then(function(response){
+            if(response.status==200) {
+                return response.json();
+            } else {
+                return null;
             }
         });
     }
@@ -66,7 +74,7 @@ function UserServiceClient() {
     }
     
     function findUserByUsername(username) {
-        return fetch(self.url + '/' + username)
+        return fetch(self.profile_url + '/' + username)
             .then(function(response){
                 return response.json();
             });

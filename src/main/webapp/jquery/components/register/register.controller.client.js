@@ -32,12 +32,12 @@
     function findUserByUsername(username){
     	console.log('Checking username availibility...')
 		 userService
-		 			.findUserByUsername(username)
-		 			.then(success);
+		 			.findUserByUsername(username);
+		 			//.then(success);
 	}
     
-    function success(){
-    	if(response == null) {
+    function success(response){
+    	if(response === null) {
 			 createUser();
 		 }
     	else
@@ -53,33 +53,15 @@
 
         userService
             .createUser(user);
-            //.then(findUserById(userId));
-         
         alert('Registered successfully');
         profile();
       }
 	 
 	 function profile(){
-		 window.location.replace('http://localhost:8080/jquery/components/profile/profile.template.client.html');
-	 }
+    	window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + $("#usernameFld").val();
+     }
 	 
 	 function login(){
 		 window.location.replace('http://localhost:8080/jquery/components/login/login.template.client.html');
 	 }
-	 
-	 function findUserById(userId) {
-	        userService
-	            .findUserById(userId)
-	            .then(renderUser);
-	    }
-	    
-	    function renderUser(user) {
-	        console.log(user);
-	        $staticUsername.val(user.username);
-	        $email.val(user.email);
-	        $role.val(user.role);
-	        $phone.val(user.phone);
-	        $dob.val(user.dob);
-	    }
-
 })();
