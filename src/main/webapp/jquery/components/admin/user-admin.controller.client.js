@@ -82,7 +82,15 @@
 
     function editUser(event) {
         console.log('editUser');
-        console.log(event);
+        var editBtn = $(event.currentTarget);
+        var userId = editBtn
+            .parent()
+            .parent()
+            .attr('id');
+
+        userService
+            .updateUser(userId)
+            .then(findAllUsers);
     }
 
 })();

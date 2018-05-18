@@ -23,7 +23,7 @@
         		     .click(logout);
             
 
-        findUserById(userId);
+        findUserById(402);
     }
 
     function updateUser() {
@@ -35,7 +35,7 @@
         };
 
         userService
-            .updateUser(userId, user)
+            .updateUser(402, user)
             .then(success);
     }
     

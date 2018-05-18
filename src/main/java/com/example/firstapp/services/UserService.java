@@ -47,6 +47,10 @@ public class UserService {
 			User user = data.get();
 			user.setFirstName(newUser.getFirstName());
 			user.setLastName(newUser.getLastName());
+			user.setEmail(newUser.getEmail());
+			user.setPhone(newUser.getPhone());
+			user.setRole(newUser.getRole());
+			user.setDateOfBirth(newUser.getDateOfBirth());
 			repository.save(user);
 			return user;
 		}
@@ -61,4 +65,19 @@ public class UserService {
 		}
 		return null;
 	}
+	
+	@GetMapping("/api/user/{username}")
+	public User findUserByUsername(@PathVariable("username") String username) {
+		Optional<User> data = repository.findUserByUsername(username);
+		if(data.isPresent()) {
+			return data.get();
+		}
+		return null;
+	}
+	
+	/*@GetMapping("/api/user")
+	public int findUserId(@RequestBody User user) {
+		repository.save(user);
+		return user.getId();
+	}*/
 }
