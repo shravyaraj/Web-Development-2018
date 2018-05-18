@@ -6,14 +6,18 @@
     var $loginBtn;
     var $registerBtn;
     var userService = new UserServiceClient();
+    var uname;
     
     function init(){
     	$username = $("#usernameFld");
     	$password = $("#inputPasswordFld");
+    	uname = $("#usernameFld").val();
     	$loginBtn = $("#loginBtn")
     				.click(login);
     	$registerBtn = $("#registerBtn")
     				.click(register);
+    	
+    	
     	
     }
     
@@ -28,7 +32,7 @@
     }
     
     function profile(){
-    	window.location.href( '/api/profile');
+    	window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + uname;
     }
     
   })();

@@ -21,10 +21,23 @@
         		     .click(updateUser);
         $logoutBtn = $("#logoutBtn")
         		     .click(logout);
-        $userId=52;
+        //$userId=2;
+        var username=$.urlParam('uname');
             
 
-        findUserById($userId);
+        //findUserById($userId);
+        findUserByUsername(username);
+    }
+    
+    $.urlParam = function(name, url) {
+        if (!url) {
+         url = window.location.href;
+        }
+        var results = new RegExp('[\\?&]' + name + '=([^&#]*)').exec(url);
+        if (!results) { 
+            return undefined;
+        }
+        return results[1] || undefined;
     }
 
     function updateUser() {
@@ -36,7 +49,7 @@
         };
 
         userService
-            .updateUser(userId, user)
+            .updateUser($userId, user)
             .then(success);
     }
     
@@ -52,11 +65,18 @@
         }
     }
 
-    function findUserById(userId) {
+    /*function findUserById(userId) {
         userService
             .findUserById($userId)
             .then(renderUser);
+    }*/
+    
+    function findUserByUsername(username) {
+    userService
+        .findUserByUsername(username)
+        .then(renderUser);
     }
+    
     
     function renderUser(user) {
         console.log(user);
