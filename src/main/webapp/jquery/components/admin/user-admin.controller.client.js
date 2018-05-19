@@ -2,15 +2,27 @@
 (function () {
 
     jQuery(main);
-
+    
+    var $username;
+    var $password;
+    var $firstName;
+    var $lastName;
+    var $role;
     var tbody;
     var template;
+    var userId;
     var userService = new UserServiceClient()
 
     function main() {
-        tbody = $('tbody');
+    	$username = $("#usernameFld");
+    	$password = $("#passwordFld");
+    	$firstName = $("#firstNameFld");
+    	$lastName = $("#lastNameFld");
+    	$role = $("#roleFld");
+    	tbody = $('tbody');
         template = $('.template');
         $('#createUser').click(createUser);
+        $('#saveEdit').click(saveEdit);
 
         findAllUsers();
     }
@@ -22,14 +34,13 @@
     }
 
     function createUser() {
-        console.log('createUser');
-
+        console.log('Creating user');
         var username = $('#usernameFld').val();
         var password = $('#passwordFld').val();
         var firstName = $('#firstNameFld').val();
         var lastName = $('#lastNameFld').val();
         var role = $('#roleFld').val();
-
+       
         var user = {
             username: username,
             password: password,
@@ -40,7 +51,8 @@
 
         userService
             .createUser(user)
-            .then(findAllUsers);
+            .then(findAllUsers)
+            .then(afterRender);
     }
 
     function renderUsers(users) {
@@ -55,20 +67,21 @@
             clone.find('.edit').click(editUser);
 
             clone.find('.username')
-                .html(user.username);
+            		.html(user.username);
             clone.find('.password')
-            .html(user.password);
+    				.html(user.password).css("color","white");
             clone.find('.firstName')
-            .html(user.firstName);
+            		.html(user.firstName);
             clone.find('.lastName')
-            .html(user.lastName);
+            		.html(user.lastName);
             clone.find('.role')
-            .html(user.role);
+            		.html(user.role);
             tbody.append(clone);
         }
     }
 
     function deleteUser(event) {
+    	console.log('Deleting user')
         var deleteBtn = $(event.currentTarget);
         var userId = deleteBtn
             .parent()
@@ -81,7 +94,7 @@
     }
 
     function editUser(event) {
-        console.log('editUser');
+        console.log('Editing user');
         var editBtn = $(event.currentTarget);
         var userId = editBtn
             .parent()
@@ -89,8 +102,39 @@
             .attr('id');
 
         userService
-            .updateUser(userId)
-            .then(findAllUsers);
+        	.findUserById(userId)
+        	.then(renderUser);
     }
-
+    
+    function renderUser(user) {
+    	userId=user.id;
+        $username.val(user.username);
+        $password.val(user.password);
+        $firstName.val(user.firstName);
+        $lastName.val(user.lastName);
+        $role.val(user.role);
+    }
+        
+    function saveEdit(){
+       var firstName = $('#firstNameFld').val();
+       var lastName = $('#lastNameFld').val();
+       var role = $('#roleFld').val()
+       var user = {
+                 firstName: firstName,
+                 lastName: lastName,
+                 role: role
+                 };
+       userService
+               .updateUser(userId,user)
+               .then(findAllUsers)
+               .then(afterRender);
+         }
+        
+     function afterRender() {
+        $username.val("");
+        $password.val("");
+        $firstName.val("");
+        $lastName.val("");
+        $role.val("");
+        }
 })();

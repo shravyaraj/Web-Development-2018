@@ -82,6 +82,7 @@ function UserServiceClient() {
             		return response.text().then(function(text) {
             		    return text ? JSON.parse(text) : {}
             	})
+            }
             });
     }
 
