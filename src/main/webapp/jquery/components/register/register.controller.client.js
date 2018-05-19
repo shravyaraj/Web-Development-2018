@@ -10,11 +10,11 @@
     var password;
     
     function main() {
-    	 username = $('#usernameFld').val();
-         password = $('#inputPasswordFld').val();
+    	 
          tbody = $('tbody');
          matchPassword();
          $('#registerBtn').click(findUserByUsername); 
+         //username = $('#usernameFld').val();
          $('#loginBtn').click(login);
     }
     
@@ -30,10 +30,10 @@
         });
     }
     
-    function findUserByUsername(username){
+    function findUserByUsername() {
     	console.log('Checking username availibility...')
 		 userService
-		 			.findUserByUsername(username)
+		 			.findUserByUsername($('#usernameFld').val())
 		 			.then(success);
 	}
     

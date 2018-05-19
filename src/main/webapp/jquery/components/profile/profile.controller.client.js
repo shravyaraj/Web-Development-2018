@@ -8,6 +8,7 @@
     var $role;
     var $dob;
     var $logoutBtn;
+    var userId;
     var userService = new UserServiceClient();
     
 
@@ -44,6 +45,7 @@
         }
     
     function renderUser(user) {
+    	userId=user.id;
         console.log(user);
         $staticUsername.val(user.username);
         $email.val(user.email);

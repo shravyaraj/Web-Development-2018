@@ -76,15 +76,13 @@ function UserServiceClient() {
     function findUserByUsername(username) {
         return fetch(self.profile_url + '/' + username)
             .then(function(response){
-                return response.json();
+            	if(response == null)
+            		return null;
+            	else{
+            		return response.text().then(function(text) {
+            		    return text ? JSON.parse(text) : {}
+            	})
             });
-            /*.then(function(response){
-                if(response.status==200) {
-                    return response.json();
-                } else {
-                    return null;
-                }
-            });*/
     }
 
     function createUser(user) {
