@@ -38,7 +38,7 @@
 	}
     
     function success(response){
-    	if(response === null) {
+    	if(response!=null) {
 			 createUser();
 		 }
     	else

@@ -19,15 +19,16 @@ function UserServiceClient() {
             headers: {
                 'content-type': 'application/json'
             }
-        })
-        .then(function(response){
-            if(response.status==200) {
-                return response.json();
-            } else {
-                return null;
-            }
         });
     }
+       /* .then(function(response){
+            if($.isEmptyObject(response.json)) {
+                return null;
+            } else {
+                return response.json();
+            }
+        });
+    }*/
 
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {

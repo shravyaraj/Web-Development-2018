@@ -24,9 +24,10 @@
     	} 
     
     function success(response){
+    	console.log(response);
     	if(response!=null){
     		window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + $("#usernameFld").val();
-    	}else
+    	} else
     		alert('Wrong username or password!');
     }
     

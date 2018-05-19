@@ -42,7 +42,7 @@
         userService
             .findUserByUsername(username)
             .then(renderUser);
-        }
+    }
     
     function renderUser(user) {
     	userId=user.id;
@@ -61,6 +61,7 @@
             role: $role.val(),
             dob: $dob.val()
         };
+        console.log(user);
 
         userService
             .updateUser(userId, user)
@@ -77,16 +78,5 @@
     
     function logout(){
     	window.location.replace('http://localhost:8080/jquery/components/login/login.template.client.html');
-    }
-
-    /*function findUserById(userId) {
-        userService
-            .findUserById($userId)
-            .then(renderUser);
-    }*/
-    
-    
-    
-    
-    
+    }    
 })();
