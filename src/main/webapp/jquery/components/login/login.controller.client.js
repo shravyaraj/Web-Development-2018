@@ -26,12 +26,12 @@
     function success(response){
     	console.log(response);
     	if(response!=null){
-    		window.location.href="http://localhost:8080/jquery/components/profile/profile.template.client.html?username=" + $("#usernameFld").val();
+    		window.location.href="/jquery/components/profile/profile.template.client.html?username=" + $("#usernameFld").val();
     	} else
     		alert('Wrong username or password!');
     }
     
     function register(){
-    	window.location.replace( 'http://localhost:8080/jquery/components/register/register.template.client.html')
+    	window.location.replace( '/jquery/components/register/register.template.client.html')
     }    
   })();

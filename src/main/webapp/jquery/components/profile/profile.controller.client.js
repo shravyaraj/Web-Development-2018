@@ -77,6 +77,6 @@
     }
     
     function logout(){
-    	window.location.replace('http://localhost:8080/jquery/components/login/login.template.client.html');
+    	window.location.replace('/jquery/components/login/login.template.client.html');
     }    
 })();
