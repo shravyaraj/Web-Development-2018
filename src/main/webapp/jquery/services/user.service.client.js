@@ -21,14 +21,6 @@ function UserServiceClient() {
             }
         });
     }
-       /* .then(function(response){
-            if($.isEmptyObject(response.json)) {
-                return null;
-            } else {
-                return response.json();
-            }
-        });
-    }*/
 
     function updateUser(userId, user) {
         return fetch(self.url + '/' + userId, {
@@ -75,17 +67,11 @@ function UserServiceClient() {
     }
     
     function findUserByUsername(username) {
-        return fetch(self.profile_url + '/' + username)
-            .then(function(response){
-            	if(response == null)
-            		return null;
-            	else{
-            		return response.text().then(function(text) {
-            		    return text ? JSON.parse(text) : {}
-            	})
-            }
-            });
-    }
+        return fetch(self.profile_url + "/" + username)
+        .then(function(response){
+            	return response.json();
+         });
+      }
 
     function createUser(user) {
         return fetch(self.url, {

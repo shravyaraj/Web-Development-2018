@@ -10,11 +10,9 @@
     var password;
     
     function main() {
-    	 
          tbody = $('tbody');
          matchPassword();
          $('#registerBtn').click(findUserByUsername); 
-         //username = $('#usernameFld').val();
          $('#loginBtn').click(login);
     }
     
@@ -34,22 +32,21 @@
     	console.log('Checking username availibility...')
 		 userService
 		 			.findUserByUsername($('#usernameFld').val())
-		 			.then(success);
+		 createUser();
 	}
-    
-    function success(response){
+    /*function success(response){
     	if(response!=null) {
 			 createUser();
 		 }
     	else
     		alert('Sorry! Username already taken!')
-    }
+    }*/
     
 	function createUser() {
         console.log('Registering user...');
         var user = {
-            username: username,
-            password: password
+            username: $('#usernameFld').val(),
+            password: $('#inputPasswordFld').val()
         };
 
         userService

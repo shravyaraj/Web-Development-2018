@@ -22,7 +22,7 @@
     	tbody = $('tbody');
         template = $('.template');
         $('#createUser').click(createUser);
-        $('#saveEdit').click(saveEdit);
+        $('#saveEdit').click(updateUser);
 
         findAllUsers();
     }
@@ -64,7 +64,7 @@
             clone.attr('id', user.id);
 
             clone.find('.delete').click(deleteUser);
-            clone.find('.edit').click(editUser);
+            clone.find('.edit').click(findUserById);
 
             clone.find('.username')
             		.html(user.username);
@@ -93,8 +93,8 @@
             .then(findAllUsers);
     }
 
-    function editUser(event) {
-        console.log('Editing user');
+    function findUserById(event) {
+        console.log('Selecting user');
         var editBtn = $(event.currentTarget);
         var userId = editBtn
             .parent()
@@ -115,7 +115,7 @@
         $role.val(user.role);
     }
         
-    function saveEdit(){
+    function updateUser(){
        var firstName = $('#firstNameFld').val();
        var lastName = $('#lastNameFld').val();
        var role = $('#roleFld').val()
