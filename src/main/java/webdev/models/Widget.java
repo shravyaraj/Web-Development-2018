@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.type.ListType;
+import org.hibernate.type.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -28,7 +28,7 @@ public class Widget {
 	private String href;
 	private String src;
 	private String listItems;
-	private ListType listType;
+	private String listType;
 	
 	@ManyToOne
 	@JsonIgnore
@@ -106,10 +106,10 @@ public class Widget {
 	public void setListItems(String listItems) {
 		this.listItems = listItems;
 	}
-	public ListType getListType() {
+	public String getListType() {
 		return listType;
 	}
-	public void setListType(ListType listType) {
+	public void setListType(String listType) {
 		this.listType = listType;
 	}
 	public Lesson getLesson() {
