@@ -31,6 +31,14 @@ public class WidgetService {
 	WidgetRepository widgetRepository;
 	
 	
+	@PostMapping("api/widget/save")
+	public void saveAllWidgets(@RequestBody List<Widget> widgets) {
+		widgetRepository.deleteAll();
+		for(Widget widget: widgets) {
+			widgetRepository.save(widget);
+		}
+	}
+	
 	@GetMapping("/api/widget")
 	public List<Widget> findAllWidgets() {
 		return (List<Widget>) widgetRepository.findAll();
@@ -89,8 +97,7 @@ public class WidgetService {
 	}
 	
 	@GetMapping("/api/lesson/{lessonId}/widget")
-	public List<Widget> findAllWidgetsForLesson(
-			@PathVariable("lessonId") int lessonId) {
+	public List<Widget> findAllWidgetsForLesson( @PathVariable("lessonId") int lessonId) {
 		Optional<Lesson> data = lessonRepository.findById(lessonId);
 		if(data.isPresent()) {
 			Lesson lesson = data.get();

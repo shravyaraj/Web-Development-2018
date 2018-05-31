@@ -49,8 +49,8 @@ public class Widget {
 	public int getSequence() {
 		return sequence;
 	}
-	public void setSequence(int order) {
-		this.sequence = order;
+	public void setSequence(int sequence) {
+		this.sequence = sequence;
 	}
 	public String getText() {
 		return text;
